@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Introducción a la programación dinámica | Programación competitiva ESCOM</title>
+<meta name="generator" content="Jekyll v3.7.2" />
+<meta property="og:title" content="Introducción a la programación dinámica" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="¿Qué es la programación dinámica?" />
+<meta property="og:description" content="¿Qué es la programación dinámica?" />
+<link rel="canonical" href="http://localhost:4000/dynamic_programming/2018/01/29/programacion-dinamica.html" />
+<meta property="og:url" content="http://localhost:4000/dynamic_programming/2018/01/29/programacion-dinamica.html" />
+<meta property="og:site_name" content="Programación competitiva ESCOM" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-01-29T22:44:12-08:00" />
+<script type="application/ld+json">
+{"description":"¿Qué es la programación dinámica?","@type":"BlogPosting","url":"http://localhost:4000/dynamic_programming/2018/01/29/programacion-dinamica.html","headline":"Introducción a la programación dinámica","dateModified":"2018-01-29T22:44:12-08:00","datePublished":"2018-01-29T22:44:12-08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dynamic_programming/2018/01/29/programacion-dinamica.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Programación competitiva ESCOM" />
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" rel="author" href="/">Programación competitiva ESCOM</a>
+
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Introducción a la programación dinámica</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-01-29T22:44:12-08:00" itemprop="datePublished">
+        
+        Jan 29, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="qué-es-la-programación-dinámica">¿Qué es la programación dinámica?</h2>
+
+<p class="text-justify">La programación dinámica es una técnica de diseño de algoritmos que consiste en: descomponer un problema en subproblemas de forma recursiva, posteriormente utiliza las soluciones óptimas a estos subproblemas para encontrar la solución óptima al problema original. Es importante remarcar que los problemas deben cumplir con una propiedad sumamente importante para ser resueltos mediante la programación dinámica, esta propiedad se conoce como <strong>problemas superpuestos</strong>. La programación dinámica aprovecha esta propiedad al guardar en una tabla la solución a cada subproblema, haciendo que cada uno de estos tenga que ser calculado solo una vez, reduciendo la complejidad dramáticamente.</p>
+
+<h2 id="qué-problemas-puede-resolver-esta-técnica">¿Qué problemas puede resolver esta técnica?</h2>
+
+<p class="text-justify">La técnica de programación dinámica puede resolver cualquier problema que cuente con las siguientes propiedades:</p>
+
+<p class="text-justify"><strong>Subestructura óptima:</strong> en términos simples esta propiedad consiste en que podemos construir la solución óptima a un problema a través de la solución óptima a sus subproblemas.</p>
+
+<p class="text-justify"><strong>Problemas superpuestos:</strong> esta propiedad consiste en que cierto subproblema ocurre en múltiples ocasiones al resolver el problema.</p>
+
+<h2 id="como-utilizar-esta-técnica">¿Como utilizar esta técnica?</h2>
+
+<p class="text-justify">Para resolver un problema que utilizando la programación dinámica utilizaremos los siguientes pasos:</p>
+
+<ol>
+  <li>Caracterizar la estructura de una solución óptima</li>
+  <li>Descomponer un problema en subproblemas de forma recursiva</li>
+  <li>Definir la solución óptima como una combinación de las soluciones óptimas a los subproblemas</li>
+</ol>
+
+<h4 id="paso-1">Paso 1</h4>
+
+<p class="text-justify">Se debe definir un conjunto de variables que proporcionen la información necesaria para representar al problema y a sus subproblemas. Es importante que tanto el problema como sus subproblemas puedan ser representados por el mismo conjunto de variables, esto nos permitirá descomponer recursivamente en problemas cada vez mas simples.</p>
+
+<h4 id="paso-2">Paso 2</h4>
+
+<p class="text-justify">En este paso descomponemos cierta instancia del problema en subproblemas(problemas mas simples) de forma recursiva, usualmente se intenta descomponer el problema en todas las formas posibles. Al descomponer los problemas eventualmente llegaremos a problemas tan simples que la respuesta es trivial, a estos problemas tan simples se les conoce como casos base, y se deben tener en cuenta al diseñar cualquier algoritmo de programación dinámica.</p>
+
+<h4 id="paso-3">Paso 3</h4>
+
+<p class="text-justify">Una vez que el problema ha sido descompuesto en subproblemas se combinan las soluciones óptimas a estos subproblemas para encontrar la solución óptima al problema original. Una vez calculada la solución óptima esta debe ser almacenada en una tabla, esto nos permite ahorrar tiempo en caso de que necesitemos el resultado para ese problema nuevamente.</p>
+
+<h2 id="problema-de-práctica">Problema de práctica</h2>
+
+<p class="text-justify"><code class="highlighter-rouge">Chomps es un estudiante modelo, pero sus calificaciones han empeorado gracias a que siempre llega tarde por culpa del ineficiente servicio de metro que hay en la cuidad, es por eso que te ha pedido a ti su mejor estudiante del club de algoritmia que le ayudes a encontrar la ruta de metro mas rápida. La red del metro tiene N estaciones numeradas del 1 al N, sabiendo que Chomps empieza su viaje en la estacion 1 y termina en la estacion N ¿Cual es el tiempo minimo en el que puede realizarlo?</code></p>
+
+<h4 id="entrada">Entrada</h4>
+<p class="text-justify"><code class="highlighter-rouge">La primera linea contiene el numero de estaciones de metro N, las siguientes N lineas contienen N números cada una. El j-ésimo numero de la i-ésima fila representa la cantidad de tiempo que nos toma viajar entre la i-ésima estación y la j-ésima estación, en caso de que no sea posible viajar entre dos estaciones este número sera -1.</code></p>
+
+<h4 id="salida">Salida</h4>
+<p class="text-justify"><code class="highlighter-rouge">El tiempo minimo en que Chomps puede realizar su viaje</code></p>
+
+<h4 id="ejemplo">Ejemplo</h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> <span class="mi">6</span>
+ <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">3</span>  <span class="mi">3</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span><span class="mi">1</span>  <span class="mi">0</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">8</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">0</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">5</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">0</span>  <span class="mi">7</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">0</span>  <span class="mi">3</span>
+<span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">0</span></code></pre></figure>
+
+<h3 id="este-problema-cumple-con-las-propiedades">¿Este problema cumple con las propiedades?</h3>
+
+<p class="text-justify">Para saber si este problema cumple con las propiedades es suficiente con observar el comportamiento al tratar de resolverlo de la forma mas fácil posible, utilizando una <strong>búsqueda completa</strong>, esto es tratando todas las formas posibles de llegar desde la estacion 1 a la estacion N. En el caso de ejemplo podemos representar la red del metro de la siguiente forma:</p>
+
+<p class="image-center"><img src="/assets/example01.png" alt="Red del metro" /></p>
+
+<h4 id="problemas-superpuestos"><strong>Problemas superpuestos</strong></h4>
+
+<p>Para llegar desde la estación 1 hasta la estación 6 se pueden encontrar las siguientes rutas:</p>
+
+<p><code class="highlighter-rouge">1-2-5-6</code><br />
+<code class="highlighter-rouge">1-3-5-6</code><br />
+<code class="highlighter-rouge">1-4-5-6</code></p>
+
+<p class="text-justify">Podemos observar que el subproblema de encontrar la ruta mas corta desde la estación 5 a la estación 6 tiene que ser resuelto en múltiples ocasiones, esto convierte a nuestro problema en un problema con <strong>problemas superpuestos</strong>.</p>
+
+<h4 id="subestructura-óptima"><strong>Subestructura óptima</strong></h4>
+
+<p class="text-justify">Dado que hemos encontrado la forma óptima de llegar desde la estación 2 a la estación 6, desde la estación 3 a la estación 6 y desde la estación 4 a la 6, podemos calcular la solución óptima de viajar desde la estación 1 a la estación 6, de la siguiente forma:</p>
+
+<p><code class="highlighter-rouge">f(1) = min(1 + f(2), 3 + f(3), 3 + f(4))</code></p>
+
+<p class="text-justify">Donde la función <code class="highlighter-rouge">f(i)</code> nos dice el tiempo mínimo de llegar desde la estación i hasta la estación N. Ahora reemplazando los subproblemas por su solución óptima tenemos el siguiente resultado:</p>
+
+<p><code class="highlighter-rouge">f(1) = min(1 + 11, 3 + 8, 3 + 10)</code></p>
+
+<p class="text-justify">Entonces al combinar estos resultados sabemos que la solución óptima para llegar desde la estación 1 a la estación N es:</p>
+
+<p><code class="highlighter-rouge">f(1) = min(12, 11, 13) = 11</code></p>
+
+<p class="text-justify">En conclusión decimos que el problema cuenta con la propiedad de <strong>subestructura óptima</strong>, ya que es posible calcular la solución óptima a través de las soluciones óptimas a sus subproblemas.</p>
+
+<h3 id="como-diseñar-un-algoritmo-para-este-problema">¿Como diseñar un algoritmo para este problema?</h3>
+
+<p class="text-justify">Antes de comenzar a diseñar nuestra solución para este problema, supondremos que ya se ha procesado la entrada, y los datos han sido guardados en las siguientes variables:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// Numero de estaciones</span>
+<span class="kt">int</span> <span class="n">numEstaciones</span><span class="p">;</span>
+
+<span class="c1">// tiempo[i][j] es el tiempo necesario para viajar entre las estaciones i y j</span>
+<span class="c1">// si no es posible viajar entre estas estaciones tiempo[i][j] sera -1</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">tiempo</span><span class="p">(</span><span class="n">numEstaciones</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">numEstaciones</span><span class="p">));</span></code></pre></figure>
+
+<p class="text-justify"><strong>Paso 1</strong>: en este paso seleccionamos las variables que representan a nuestro problema, para este problema en particular basta con tener un entero que nos indique la estación en la que nos encontramos actualmente. El conjunto de variables que seleccionemos siempre sera traducirá a los parámetros de nuestra función recursiva. De esta manera tendremos una función con un solo parámetro que como resultado regresara el tiempo mínimo para viajar desde una estación dada a la estación N.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">tiempoMinimo</span><span class="p">(</span><span class="kt">int</span> <span class="n">estacion</span><span class="p">);</span></code></pre></figure>
+
+<p class="text-justify"><strong>Paso 2</strong>: en este paso se debe analizar como dividir el problema en problemas mas simples hasta que eventualmente lleguemos a un caso trivial(caso base) al que podamos dar solución fácilmente  Comencemos por pensar en el <strong>caso base</strong>, en este problema el caso base es la estación N, dado a que el tiempo requerido para viajar desde la estación N a la estación N es cero.</p>
+
+<p class="text-justify">Ahora suponiendo que no estemos en el caso base, trataremos de llegar a la estación N(caso base) desde la estación actual utilizando todas las formas posibles, es decir, visitaremos recursivamente cada estación directamente conectada con la estación actual, para eventualmente llegar al caso base.</p>
+
+<p><strong>Paso 3</strong>:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">tiempoMinimo</span><span class="p">(</span><span class="kt">int</span> <span class="n">estacion</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// Caso base</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">estacion</span> <span class="o">==</span> <span class="n">numEstaciones</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">mejorTiempo</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+
+  <span class="c1">// Dividir el problema en subproblemas</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">numEstaciones</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>    
+    <span class="k">if</span> <span class="p">(</span><span class="n">tiempo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">estacion</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Combinar solución optimas</span>
+      <span class="kt">int</span> <span class="n">tiempoActual</span> <span class="o">=</span> <span class="n">tiempo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">tiempoMinimo</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">tiempoActual</span> <span class="o">&lt;</span> <span class="n">mejorTiempo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mejorTiempo</span> <span class="o">=</span> <span class="n">tiempoActual</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">mejorTiempo</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p class="text-justify">Finalmente aprovecharemos la propiedad de <strong>problemas superpuestos</strong> para almacenar en una tabla la solución a cada subproblema, de esta forma no se tendrá que calcular el mismo subproblema mas de una vez ahorrando tiempo de cómputo. Esto de logra al tener una tabla <code class="highlighter-rouge">memo</code> que es inicializada en un valor que nos indica que ese subproblema no ha sido calculado, en este caso nuestro indicador sera -1, una vez calculada la solución optima al subproblema se guardara este valor y cada que necesitemos la solucion optima utilizaremos el valor guardado en la tabla en lugar de calcularlo nuevamente.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">memo</span><span class="p">(</span><span class="n">numEstaciones</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">tiempoMinimo</span><span class="p">(</span><span class="kt">int</span> <span class="n">estacion</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// Caso base</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">estacion</span> <span class="o">==</span> <span class="n">numEstaciones</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c1">// Si se ha calculado previamente regresamos la solucion</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">memo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+  <span class="kt">int</span> <span class="n">mejorTiempo</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+
+  <span class="c1">// Dividir el problema en subproblemas</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">numEstaciones</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>    
+    <span class="k">if</span> <span class="p">(</span><span class="n">tiempo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">estacion</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Combinar solución optimas</span>
+      <span class="kt">int</span> <span class="n">tiempoActual</span> <span class="o">=</span> <span class="n">tiempo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">tiempoMinimo</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">tiempoActual</span> <span class="o">&lt;</span> <span class="n">mejorTiempo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mejorTiempo</span> <span class="o">=</span> <span class="n">tiempoActual</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Almacenamos la respuesta optima en la tabla</span>
+  <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mejorTiempo</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="como-calcular-la-complejidad">¿Como calcular la complejidad?</h3>
+
+<h4 id="memoria"><strong>Memoria</strong></h4>
+
+<p class="text-justify">La complejidad en memoria de un algoritmo de programación dinámica esta dado por el tamano de la tabla que utilizamos para almacenar las soluciones a los subproblemas, para obtener el numero de subproblemas distintos basta con multiplicar entre si las variables que representan al problema en la funcion recursiva. Dado que tenemos <code class="highlighter-rouge">N</code> estaciones del metro, la complejidad en memoria es <code class="highlighter-rouge">O(N)</code></p>
+
+<h4 id="tiempo"><strong>Tiempo</strong></h4>
+
+<p class="text-justify">La complejidad en tiempo se calcula <strong>multiplicando el numero de subproblemas distintos por la complejidad de calcular un subproblema</strong>. Para la solucion propuesta el numero de subproblemas distintos es <code class="highlighter-rouge">N</code> el numero de estaciones del metro. Para saber cuanto cuesta calcular cada subproblema tenemos que analizar la funcion recursiva, en el caso de nuestra funcion en cada llamada recursiva utilizamos un ciclo que recorre cada una de las <code class="highlighter-rouge">N</code> estaciones, por lo tanto la complejidad de calcular un subproblema es <code class="highlighter-rouge">O(N)</code>. Ahora multiplicando la complejidad de calcular un subproblema por el numero de subprolemas distintos tenemos que la complejidad de nuestro algoritmo es <code class="highlighter-rouge">O(N * N)</code>.</p>
+
+<h3 id="cual-fue-la-mejor-ruta">¿Cual fue la mejor ruta?</h3>
+
+<p class="text-justify">Hasta ahora nuestro algoritmo solo es capaz de decirnos cual es el tiempo mínimo en que podemos llegar desde la estación 1 hasta la estación N, pero resulta que también podemos saber cual fue la ruta óptima de manera sencilla, esto solo requiere guardar información adicional en otra tabla, esta tabla nos dirá cual es la estación que debemos visitar después de tal forma que el resultado sea óptimo.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">memo</span><span class="p">(</span><span class="n">numEstaciones</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">siguienteEstacion</span><span class="p">(</span><span class="n">numEstaciones</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">tiempoMinimo</span><span class="p">(</span><span class="kt">int</span> <span class="n">estacion</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// Caso base</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">estacion</span> <span class="o">==</span> <span class="n">numEstaciones</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c1">// Si se ha calculado previamente regresamos la solucion</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">memo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+  <span class="kt">int</span> <span class="n">mejorTiempo</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+
+  <span class="c1">// Dividir el problema en subproblemas</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">numEstaciones</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>    
+    <span class="k">if</span> <span class="p">(</span><span class="n">tiempo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">estacion</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Combinar solución optimas</span>
+      <span class="kt">int</span> <span class="n">tiempoActual</span> <span class="o">=</span> <span class="n">tiempo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">tiempoMinimo</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">tiempoActual</span> <span class="o">&lt;</span> <span class="n">mejorTiempo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mejorTiempo</span> <span class="o">=</span> <span class="n">tiempoActual</span><span class="p">;</span>
+        <span class="c1">// Guardamos la estacion a la que debemos ir para minimizar el tiempo</span>
+        <span class="n">siguienteEstacion</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Almacenamos la respuesta optima en la tabla</span>
+  <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mejorTiempo</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p class="text-justify">Al ejecutar nuestro algoritmo con el caso de ejemplo la tabla siguienteEstacion quedara de la siguiente forma:</p>
+
+<p><code class="highlighter-rouge">Para la estación 1: siguienteEstacion[0] =  2</code><br />
+<code class="highlighter-rouge">Para la estación 3: siguienteEstacion[2] =  4</code><br />
+<code class="highlighter-rouge">Para la estación 5: siguienteEstacion[4] =  5</code><br />
+<code class="highlighter-rouge">Para la estación 6: siguienteEstacion[5] = -1</code></p>
+
+<p class="text-justify">Bastara con iterar los valores de <code class="highlighter-rouge">siguienteEstacion</code> hasta llegar a -1 para saber cual fue la ruta óptima. De forma que la mejor ruta es <code class="highlighter-rouge">1-3-5-6</code>.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mejorRuta</span><span class="p">(</span><span class="kt">int</span> <span class="n">estacion</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">estacionActual</span> <span class="o">=</span> <span class="n">estacion</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mejorRuta</span><span class="p">;</span>
+
+  <span class="n">mejorRuta</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">estacion</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">siguienteEstacion</span><span class="p">[</span><span class="n">estacionActual</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">mejorRuta</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">siguienteEstacion</span><span class="p">[</span><span class="n">estacionActual</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">estacionActual</span> <span class="o">=</span> <span class="n">siguienteEstacion</span><span class="p">[</span><span class="n">estacionActual</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">mejorRuta</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p class="text-justify">En general en cualquier algoritmo de programación dinámica cuyo objetivo sea la maximizacion o minimizacion podra utilizar este metodo para saber cual es la respuesta optima, solo se tendra que proporcionar la informacion necesaria para saber cual es la desicion que garantiza el resultado optimo.</p>
+
+  </div>
+
+  
+
+  <a class="u-url" href="/dynamic_programming/2018/01/29/programacion-dinamica.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Programación competitiva ESCOM</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            
+              Programación competitiva ESCOM
+            
+            </li>
+            
+            <li><a class="u-email" href="mailto:mcolula@gmail.com">mcolula@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+  
+  
+  
+  <li><a href="https://github.com/"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username"></span></a></li>
+  
+  
+  
+  <li><a href="https://www.twitter.com/"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username"></span></a></li>
+  
+  
+  
+</ul>
+
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
